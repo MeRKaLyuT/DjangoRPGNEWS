@@ -1,0 +1,11 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<h1>Изменение поста</h1>
+<hr>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+    <input type="submit" value="Сохранить" />
+</form>
+{% endblock content %}

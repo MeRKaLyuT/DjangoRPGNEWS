@@ -1,0 +1,26 @@
+{% extends 'default.html' %}
+
+{% block content %}
+
+<h1>Профиль</h1>
+
+{% if user.is_authenticated %}
+
+<h1>Welcome, {{ username }}</h1>
+<br>
+<a href="{% url 'usercomments' %}">Ваши комментарии к постам</a>
+<br>
+<a href="{% url 'authorcomments' %}">Комментарии к вашим постам</a>
+<br><br>
+<a href="{% url 'account_logout'   %}">Выйти из аккаунта</a>
+{% else %}
+
+<p>Похоже, вы не зарегистрированы! Это можно сделать <a href="{% url 'account_login' %}">здесь</a></p>
+
+{% endif %}
+
+<br><br>
+<a href="{% url 'news' %}">Назад</a>
+
+
+{% endblock content %}

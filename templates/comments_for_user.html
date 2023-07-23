@@ -1,0 +1,13 @@
+{% extends 'default.html' %}
+
+{% block content %}
+{% for comment in comments %}
+    <div>
+        <h3>{{ comment.text }}</h3>
+        <h5><a href="{% url 'post' comment.connect_post_id %}">{{ comment.connect_post }}</a></h5>
+    </div>
+{% empty %}
+    <br>
+    <p>У вас нет комментариев</p>
+{% endfor %}
+{% endblock content %}

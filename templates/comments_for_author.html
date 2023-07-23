@@ -1,0 +1,23 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<br>
+
+<hr>
+{% for comment in comments %}
+        <h5><a href="{% url 'post' comment.connect_post_id %}">{{ comment.connect_post }}</a></h5>
+        <p>{{ comment.author }}</p>
+        <p>{{ comment.text }}</p>
+        <p>Статус: {{ comment.status }}</p>
+        <form method="POST" action="{% url 'authorcomments' %}">
+            {% csrf_token %}
+            <input type="hidden" name="comment_id" value="{{ comment.id }}">
+            {{ form.as_p }}
+        <input type="submit" value="Сохранить" />
+        </form>
+        <hr>
+{% empty %}
+<br><br>
+<h3>Похоже, к вашим постам еще не оставили комментариев!</h3>
+{% endfor %}
+{% endblock content %}

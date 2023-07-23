@@ -1,0 +1,28 @@
+{% extends 'default.html' %}
+
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+
+<h1 class="">Все новости о мире MMORPG</h1>
+
+{% for post in posts %}
+
+    {% if posts %}
+        <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+        <p>{{ post.text|truncatechars:60 }}</p>
+    {% else %}
+        <h2>Постов нет!</h2>
+    {% endif %}
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+    {% endif %}
+    <hr>
+
+{% endfor %}
+
+
+{% endblock content %}

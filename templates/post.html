@@ -1,0 +1,41 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+
+<h5>Название:</h5>
+{{ post.title}}
+<h5>Автор:</h5>
+{{ post.user }}
+<br>
+<h5>Текст:</h5>
+{{ post.text }}
+<br>
+{% if post.image %}
+<img src="{{ post.image.url }}" alt="{{ post.title }}" />
+{% endif %}
+<br>
+<a href="{% url 'post_edit' post.id %}">Изменить</a>
+<br>
+<br>
+<form method="post" action="{% url 'comment_create' %}">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <button type="submit">Добавить комментарий</button>
+</form>
+<br>
+<h3>Комментарии:</h3>
+<br>
+{% for comment in comments %}
+{{ comment.author }}
+<br>
+{{ comment.text }}
+<br>
+<hr>
+{% endfor %}
+
+{% endblock content %}
+
