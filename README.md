@@ -6,6 +6,6 @@
 
 python -m venv venv (установка виртуального окружения)
 
-pip install -r requirements.txt
+pip install -r req.txt
 
 python manage.py runserver
